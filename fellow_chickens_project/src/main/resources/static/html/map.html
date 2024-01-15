@@ -1,0 +1,730 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />  
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&type=webgl&ak=wiTZkTZK33DOzuBXNKY0ved0iZiBZeCU"></script>  
+    <script src="/js/vue.js"></script>
+    <script src="/js/echarts.js"></script>
+     <!-- Bootstrap Core CSS -->
+	<link href="/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui@2.15.8/lib/index.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/info.css">
+    <link rel="stylesheet" href="/css/market.css">
+	<!-- Custom CSS -->
+    <link href="/css/style1.css" rel="stylesheet" type="text/css">
+	<link href="/css/style.css" rel='stylesheet' type='text/css' />
+	<!-- Graph CSS -->
+	<link href="/css/font-awesome.css" rel="stylesheet">
+	<!-- jQuery -->
+    <script charset="utf-8" src="/js/jquery-3.6.0.min.js"></script>
+	<!-- lined-icons -->
+	<link rel="stylesheet" href="/css/icon-font.min.css" type='text/css' />
+    <link href="/css/animate.css" rel="stylesheet" type="text/css" media="all">
+    <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
+    
+    <script src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/numeral/numeral.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/v-charts-v2/lib/index.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/v-charts-v2/lib/style.min.css">
+
+    <title>index</title>   
+</head>  
+<body  class="sticky-header left-side-collapsed">
+    <div id="dialog" v-if="dialogTableVisible"> <!--弹窗-->
+            <el-dialog :visible.sync="dialogTableVisible" class="dialog1">      
+                <template>
+                    <el-tabs v-model="activeName" type="card" @tab-click="handleClick">
+                      <el-tab-pane label="信息" name="first"></el-tab-pane>
+                      <el-tab-pane label="经营" name="second"></el-tab-pane>
+                      <el-tab-pane label="拜访记录" name="third"></el-tab-pane>
+                      <el-tab-pane label="附件" name="fourth"></el-tab-pane>
+                    </el-tabs>
+                    <div style="height:400px">
+                        <!--信息-->
+                        <div v-if="firstflag">
+                            <div class="sketch_content">
+                                <ul>
+                            <div class="upper">
+                                <div class="info_left"><img src="/images/logo.jpg" width=150px></div>
+                                <div class="info_right">
+                                    <div class="info_right_big" id="market_name"><strong>{{info.name}}</strong></div>
+                                    <div class="special_title">
+                                        <div style="float: left;">
+                                            门店基本信息
+                                        </div>
+                                    </div>
+
+                                    <div class="info_2_miaoshaInfo">
+                                    <div class="miaoshaInfo1">
+                                        <div class="miaoshaInfo_left">门店地址</div>
+                                        <div class="miaoshaInfo_middle">
+                                            {{info.address}}
+                                        </div>
+                                        <div class="miaoshaInfo_right">
+                                            <p style="font-size: 13px;">本月收入</p>
+                                            <p id="sold_thismonth">{{info.turnover}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="miaoshaInfo1">
+                                        <div class="miaoshaInfo_left">门店ID</div>
+                                        <div class="miaoshaInfo_middle" id="address">
+                                            {{info.storeid}}
+                                        </div>
+                                    </div>
+                                    <div class="miaoshaInfo2">
+                                        <div class="miaoshaInfo2_a">门店模式</div>
+                                        <div class="miaoshaInfo2_c changeColor">{{info.storemode}}</div>
+                                    </div>
+                                    <div class="miaoshaInfo2">
+                                        <div class="miaoshaInfo2_a">门店楼层</div>
+                                        <div class="miaoshaInfo2_c changeColor">{{info.floor}}</div>
+                                    </div>
+                                    <div class="miaoshaInfo2">
+                                        <div class="miaoshaInfo2_a">门店面积</div>
+                                        <div class="miaoshaInfo2_c changeColor">{{info.square}}</div>
+                                    </div>
+                                    <div class="miaoshaInfo2">
+                                        <div class="miaoshaInfo2_a">所属迷你市场</div>
+                                        <div class="miaoshaInfo2_c changeColor">{{info.marketname}}</div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                                <!-- 其他信息 -->
+                            <div class="cert">
+                                <!-- 这里是-->
+                                <div style="font-size: 40px;font-family: 华文行楷;text-align: center">
+                                    营业执照
+                                </div>
+                                <div class="info_1_img">
+                                    <img :src="info.photo" width="100%">
+                                </div>
+                            </div>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--经营-->
+                        <div v-if="secondflag">
+                            <div class="sketch_content">
+                                    <div>  <!--选择统计时间-->
+                                        <span class="demonstration" style="width:33%;padding-left: 10px;">统计时间:</span>
+                                        <el-date-picker
+                                          popper-class="select_time"
+                                          v-model="value1"
+                                          type="monthrange"
+                                          range-separator="至"
+                                          start-placeholder="开始日期"
+                                          end-placeholder="结束日期"
+                                          value-format="yyyy-MM"
+                                          @change="change_time" style="width:75%">
+                                        </el-date-picker>
+                                    </div>
+                                
+                                <div style="height: 10px;"></div>
+                                <div style="font-size: 30px;background-color: azure;opacity: 0.6;margin-left: 40%;margin-right: 40%;">
+                                    经营信息
+                                </div>
+                                <!--选择统计方式-->
+                                <div style="margin-top: 10px;"> 
+                            <span style="width:33%;padding-left: 10px;">统计方式：</span>
+                            <el-radio-group v-model="radio" size="small" @change="change_radio">
+                                <el-radio-button label="营业额"></el-radio-button>
+                                <el-radio-button label="账单数"></el-radio-button>
+                            </el-radio-group>
+                            <!--展示营业额数据-->
+                            <template style="margin-top: 10px; padding: 10px;" v-if="is_turnover">  
+                                <el-table :data="sale_data" stripe height="300" border style="width: 100%;font-size: 7px;">
+                                    <el-table-column prop="date" label="日期" style="width:25%"></el-table-column>
+                                    <el-table-column prop="turnover" label="日均营业额" style="width: 25%"></el-table-column>
+                                    <el-table-column prop="hall_turnover" label="堂食营业额" style="width: 25%"></el-table-column>
+                                    <el-table-column prop="takeout_turnover" label="外卖营业额" style="width: 25%"></el-table-column>
+                                </el-table>
+                            </template>
+                            <!--展示账单数据-->
+                            <template style="margin-top: 10px; padding: 10px;" v-if="is_order">  
+                                <el-table :data="sale_data" stripe height="300" border style="width: 100%;font-size: 7px;">
+                                    <el-table-column prop="date" label="日期" style="width:25%"></el-table-column>
+                                    <el-table-column prop="orders" label="账单总数" style="width: 25%"></el-table-column>
+                                    <el-table-column prop="hall_order" label="堂食账单数" style="width: 25%"></el-table-column>
+                                    <el-table-column prop="takeout_order" label="外卖账单数" style="width: 25%"></el-table-column>
+                                </el-table>
+                            </template>
+                                </div>
+                                <div style="font-size: 30px;background-color: azure;opacity: 0.6;margin-left: 40%;margin-right: 40%;">
+                                    经营趋势
+                                </div>
+                                <!--销售情况折线图-->
+                                <div style="width: 95%;height: 300px;margin: 10px;background-color:white;border-top: 1px black solid;">  
+                            <ve-line :data="chartData" :settings="chartSettings"></ve-line>
+                                </div>
+                            </div>
+                        </div>
+                        <!--拜访记录-->
+                        <div v-if="thirdflag">
+                            <div class="sketch_content">
+                                <el-button type="success" @click="add_text()">新增记录</el-button>
+                                <div style="padding:5px;margin: 10px;">
+                                    <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+                                        <el-form-item label="时间">
+                                            <el-date-picker :popper-append-to-body="false" popper-class="select_time" type="date" placeholder="选择日期" v-model="formLabelAlign.visitTime" value-format="yyyy-MM-dd" style="width: 40%;"></el-date-picker>
+                                        </el-form-item>
+                                        <el-form-item label="发起人">
+                                            <el-input v-model="formLabelAlign.visitor"></el-input>
+                                        </el-form-item>
+                                        <el-form-item label="备注/评价">
+                                            <el-input v-model="formLabelAlign.Comment" type="text"></el-input>
+                                        </el-form-item>
+                                    </el-form>
+                                </div>
+                                <div>
+                                    <h2>历史拜访记录</h2> <!--循环展示历史拜访记录-->
+                                    <div class="demo-image">
+                                        <div class="block" v-for="(fit,index) in fits" :key='index'>
+                                            <div style="padding:5px;margin: 10px;border-top:1px red solid;">
+                                                <el-form :label-position="labelPosition" label-width="80px">
+                                                    <el-form-item label="时间">
+                                                        <span>{{fit.visitTime}}</span>
+                                                    </el-form-item>
+                                                    <el-form-item label="发起人">
+                                                        <span>{{fit.visitor}}</span>
+                                                    </el-form-item>
+                                                    <el-form-item label="备注/评价">
+                                                        <span>{{fit.Comment}}</span>
+                                                    </el-form-item>
+                                                </el-form>
+                                            </div>
+                                            <!--<span v-for="url in fit.files" :key="url" >{{url}}</span>-->
+                                            <el-image style="width: 100px;height: 100px;margin-left: 20px;" v-for="(url,index) in fit.files" :key='index' :src=url lazy></el-image>
+                                          <!--<el-image style="width: 100px; height: 100px" :src="url" :fit="fit"></el-image>-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--附件-->
+                        <el-upload
+                            class="upload-demo"
+                            ref="upload"
+                            action=""
+                            :on-preview="handlePreview"
+                            :on-remove="handleRemove"
+                            :file-list="fileList"
+                            :on-change="handleChange"
+                            list-type="picture-card"
+                            :auto-upload="false" style="margin:10px" v-if="fourthflag">
+                            <i class="el-icon-plus"></i>
+                        </el-upload>
+                    </div>
+                    
+                  </template>
+            </el-dialog>
+            <el-dialog :visible.sync="dialogVisible">
+                <img width="100%" :src="dialogImageUrl" alt="">
+            </el-dialog>
+    </div>
+    <section>
+        <!-- left side start左侧边-->
+            <div class="left-side sticky-left-side">
+                <!--logo and iconic logo start-->
+                <div class="logo">
+                    <h1><a href="index.html">Easy <span>Admin</span></a></h1>
+                </div>
+                <div class="logo-icon text-center">
+                    <a href="index.html"> <img src='/images/logo.jpg' class="img-responsive" alt=""/></a>
+                </div>
+    
+                <!--logo and iconic logo end-->
+                <div class="left-side-inner">
+                    <!--sidebar nav start-->
+                        <ul class="nav nav-pills nav-stacked custom-nav">
+                            <li class="active"><a href="map.html"><i class="lnr lnr-earth"></i><span>门店分布</span></a></li>
+                            <li><a href="Area.html"><i class="lnr lnr-hourglass"></i><span>区域管理</span></a></li>
+                            <li><a href="store.html"><i class="lnr lnr-store"></i> <span>门店管理</span></a></li>
+                            <li><a href="index.html"><i class="lnr lnr-power-switch"></i> <span>注销</span></a></li>
+                          </ul>
+                    <!--sidebar nav end-->
+                </div>
+            </div>
+    </section>
+
+    <div id="container"></div>
+     <div id="right" style="overflow:auto">  <!--右侧栏信息-->
+        <div class="box1" style="margin: 0;padding:0">
+            <!--<div class="cancle1" @click="checked('right')">✖</div> -->
+            <div class="text1" style="width: 100%;color: aliceblue;">{{General_topic}}</div>
+        </div> 
+
+        <div class="box2">   
+            <div class="info"> <!--统计信息-->
+              <div class="text1">统计信息</div>     
+                <div class="table1">
+                    <template>
+                        <el-table :data="tableData1" stripe  height="200" border style="width: 100%;font-size: 10px;" show-hea>
+                            <el-table-column prop="pro" label="参数" style="width:25%;height: 15px;"></el-table-column>
+                            <el-table-column prop="target_num" label="数量" style="width: 75%"></el-table-column>
+                        </el-table>
+                    </template>
+                </div>     
+            </div>
+
+            <div class="info">  <!--销售情况-->
+                <div class="text1">经营信息</div>
+                <div class="table2">
+                    <div>  <!--选择统计时间-->
+                        <span class="demonstration" style="width:33%;padding-left: 10px;">统计时间:</span>
+                        <el-date-picker
+                          v-model="value1"
+                          type="monthrange"
+                          range-separator="至"
+                          start-placeholder="开始日期"
+                          end-placeholder="结束日期"
+                          value-format="yyyy-MM"
+                          @change="change_time" style="width:75%">
+                        </el-date-picker>
+                    </div>
+                     <!--选择统计方式-->
+                    <div style="margin-top: 10px;"> 
+                        <span style="width:33%;padding-left: 10px;">统计方式：</span>
+                        <el-radio-group v-model="radio" size="small" @change="change_radio">
+                            <el-radio-button label="营业额"></el-radio-button>
+                            <el-radio-button label="账单数"></el-radio-button>
+                            <!--<el-radio-button label="客单价"></el-radio-button>-->
+                          </el-radio-group>
+                          <!--展示营业额数据-->
+                          <template style="margin-top: 10px; padding: 10px;" v-if="is_turnover">  
+                            <el-table :data="sale_data" stripe height="300" border style="width: 100%;font-size: 7px;">
+                                <el-table-column prop="date" label="日期" style="width:25%"></el-table-column>
+                                <el-table-column prop="turnover" label="营业额总额" style="width: 25%"></el-table-column>
+                                <el-table-column prop="hall_turnover" label="堂食营业额" style="width: 25%"></el-table-column>
+                                <el-table-column prop="takeout_turnover" label="外卖营业额" style="width: 25%"></el-table-column>
+                            </el-table>
+                          </template>
+                          <!--展示账单数据-->
+                          <template style="margin-top: 10px; padding: 10px;" v-if="is_order">  
+                            <el-table :data="sale_data" stripe height="300" border style="width: 100%;font-size: 7px;">
+                                <el-table-column prop="date" label="日期" style="width:25%"></el-table-column>
+                                <el-table-column prop="orders" label="账单总数" style="width: 25%"></el-table-column>
+                                <el-table-column prop="hall_order" label="堂食账单数" style="width: 25%"></el-table-column>
+                                <el-table-column prop="takeout_order" label="外卖账单数" style="width: 25%"></el-table-column>
+                            </el-table>
+                        </template>
+                    </div>
+                    <!--销售情况折线图-->
+                    <div style="width: 95%;height: 300px;margin: 10px;background-color:white;border-top: 1px black solid;">  
+                        <ve-line :data="chartData" :settings="chartSettings"></ve-line>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/js/index.js"></script>
+	<script type="text/javascript" src="/js/src/jquery.mloading.js"></script>
+    <script>
+        $("#container").mLoading("show");
+		let point = new BMapGL.Point(116.404, 39.915);
+		//初始化地图
+		let map = new BMapGL.Map("container");
+		map.centerAndZoom(point , 5); //创建中心点与zoom缩放级别
+		map.setMinZoom(5);  //最小zoom缩放级别
+		map.setMaxZoom(17); //最大zoom缩放级别
+		map.disableScrollWheelZoom();     //关闭鼠标滚轮缩放，自定义滚轮事件，调用map.zoomIn()与map.zoomOut()来控制缩放，避免直接使用而导致一次放大或缩小几级导致数据加载问题
+		bindZoomSwithListener(map); //初始化zoom缩放监听事件
+		bindProvinceAndCitySwitchListener(map); //初始化map拖动监听事件
+		renderLevelOneMap(map);
+        
+        new Vue({    //right
+            el: '#right',
+            data:{
+                value1:['',''],  //日期
+                Data:  //经营总数据
+                {
+                    date:'',
+                    turnover:0.0,
+                    hall_turnover:0.0,
+                    hall_order:0,
+                    takeout_turnover:0.0,
+                    takeout_order:0,
+                    orders: 0
+                },
+                General_topic:"总体概览",
+                tableData1:[],  //右侧统计数据
+                sale_data:[], //销售数据
+                radio:'营业额',  //统计方式
+                chartData: {  //折线图数据
+                    columns: ['date', 'turnover','hall_turnover','hall_order','orders','takeout_turnover','takeout_order'],
+                    rows: [
+                        {
+                            date:'',
+                            turnover:0.0,
+                            hall_turnover:0.0,
+                            hall_order:0,
+                            takeout_turnover:0.0,
+                            takeout_order:0,
+                            orders: 0
+                        }
+                    ]
+                },
+                chartSettings: {  //折线图设置
+                    labelAlias: {
+                        'date': '日期',
+                        'turnover': '营业总额',
+                        'hall_turnover':'堂食营业额',
+                        'hall_order':'堂食账单数',
+                        'takeout_turnover':'外卖营业额',
+                        'takeout_order':'外卖账单数',
+                        'orders':'账单总数',
+                    },
+                    metrics: ['turnover','hall_turnover','takeout_turnover']
+                },
+                is_turnover:true, //是否展示营业额数据
+                is_order:false  //是否展示账单数据
+            },
+            mounted () {
+                window.test = this.test2;
+                
+            },
+            beforeCreate: function () {   //页面数据初始化
+                var _this = this;
+                $.ajax({  //右侧统计数据
+                    url:"http://localhost:8080/baidu_map/right_data",
+                    type:"GET",
+                    dataType:"JSON",
+					data : {type:1,ID:0},
+					contentType: "application/x-www-form-urlencoded",
+                    success:function(data){
+                        _this.tableData1 = data
+                    }
+                }),
+                $.ajax({  //折线图数据
+                    url:"http://localhost:8080/baidu_map/sale_data",
+                    type:"GET",
+                    dataType:"JSON",
+					data : {Type:1,ID:0},
+					contentType: "application/x-www-form-urlencoded",
+                    success:function(data){
+                        _this.chartData.rows = data.data
+                        _this.sale_data = data.data
+                        _this.Data = data.data
+                    }
+                })
+            },
+            methods:{
+                test2 (param,level) {  //后端获取右侧统计信息
+					  if(level == 1){  //省级
+                         this.General_topic=param.warzoneID+"|"+param.provinceName;
+                         this.init_right();
+                         this.get_data(2,param.warzoneID)
+					  }else if(level == 2){  //市级
+                        this.General_topic=param.cityName
+                        this.init_right();
+                        this.get_data(3,param.cityID)
+					  }else if(level == 3){ //区县
+                        this.General_topic=param.districtName
+                        this.init_right();
+                        this.get_data(4,param.minimarketID)
+				      }
+				},
+                change_time(){ //可以获取时间信息
+                    let start = this.value1[0];
+                    let end = this.value1[1];
+                    let data = this.Data;
+                    let flag1 = -1;
+                    let flag2 = -1;
+                    let newdata= [];
+                    for(var i=0;i<data.length;i++){
+                        if(start==data[i].date){
+                            flag1 = i;
+                        }
+                        if(end==data[i].date){
+                            flag2 = i;
+                        }
+                    }
+                    if(flag1==-1){
+                        flag1 = 0;
+                    }
+                    if(flag2==-1){
+                        flag2 = data.length-1;
+                    }
+                    for(var i=flag1;i<=flag2;i++){
+                        newdata.push(data[i])
+                    }
+                    this.chartData.rows = newdata;
+                    this.sale_data = newdata;
+                    
+                },
+                change_radio(){  //选择展示的数据
+                    if(this.radio=="账单数"){
+                        this.chartSettings.metrics=['orders','hall_order','takeout_order']
+                        this.is_turnover = false
+                        this.is_order = true
+                    }else if(this.radio=="营业额"){
+                        this.chartSettings.metrics=['turnover','hall_turnover','takeout_turnover']
+                        this.is_turnover = true
+                        this.is_order = false
+                    }
+                },
+                init_right(){  //初始化数据
+                    this.value1 = ['',''];  
+                    this.radio = "营业额";
+                    this.chartSettings.metrics=['turnover','hall_turnover','takeout_turnover']
+                    this.is_turnover = true
+                    this.is_order = false
+                },
+                get_data(type,id){  //请求数据
+                    var _this = this;
+                         $.ajax({  //后端获取统计信息数据
+                            url:"http://localhost:8080/baidu_map/right_data",
+                            type:"GET",
+                            dataType:"JSON",
+                            data : {type:type,ID:id},
+					        contentType: "application/x-www-form-urlencoded",
+                            success:function(data){
+                                _this.tableData1 = data
+                            }
+                        }),
+                        $.ajax({  //折线图数据
+                            url:"http://localhost:8080/baidu_map/sale_data",
+                            type:"GET",
+                            dataType:"JSON",
+					        data : {Type:type,ID:id},
+					        contentType: "application/x-www-form-urlencoded",
+                            success:function(data){
+                                _this.chartData.rows = data.data
+                                _this.sale_data = data.data
+                                _this.Data = data.data
+                            }
+                        })
+                }
+            }
+        });
+        new Vue({    //dialog
+                el:'#dialog',
+                data:{
+                    value1:['',''],
+                    Data:  //经营总数据
+                    {
+                        date:'',
+                        turnover:0.0,
+                        hall_turnover:0.0,
+                        hall_order:0,
+                        takeout_turnover:0.0,
+                        takeout_order:0,
+                        orders: 0
+                    },
+                    radio:'营业额',  //统计方式
+                    sale_data:[], //销售数据
+                    fits: [
+                        {
+                            visitID:'',
+                            visitTime: '', //时间
+                            visitor: '',   //发起人
+                            Comment:'',   //评价/备注
+                            files:[]  
+                        }
+                    ],  //历史拜访记录       
+                    dialogTableVisible: false,
+                    labelPosition: 'right',
+                    activeName: 'first',
+                    fileList: [],
+                    dialogImageUrl: '',  //显示附件附件图片
+                    dialogVisible: false,
+                    formLabelAlign: {  //拜访记录
+                        visitTime: '', //时间
+                        visitor: '',   //发起人
+                        Comment:'',   //评价/备注
+                        files:[],
+                        storeID: 0,
+                    },
+                    info:{  //信息
+                        name:'', //名称
+                        address:'', //地址
+                        storeid:0,  //编号
+                        storemode:'', //店面模式
+                        floor:0, //楼层
+                        square:0,  //面积
+                        monthsale:'',  //最近一个月营业额
+                        photo:'',  //营业执照
+                        marketname:'',  //所属市场名称
+                        openningtime:'',   //开业时间
+                        turnover: 0,   //最近月销售额
+                    },
+                    firstflag:true,
+                    secondflag:false,
+                    thirdflag:false,
+                    fourthflag:false,
+                    chartData: {  //折线图数据
+                        columns: ['date', 'turnover','hall_turnover','hall_order','orders','takeout_turnover','takeout_order'],
+                        rows: [{
+                            date:'',
+                            turnover:0.0,
+                            hall_turnover:0.0,
+                            hall_order:0,
+                            takeout_turnover:0.0,
+                            takeout_order:0,
+                            orders: 0
+                        }]
+                    },
+                    chartSettings: {  //折线图设置
+                        labelAlias: {
+                            'date': '日期',
+                            'turnover': '营业总额',
+                            'hall_turnover':'堂食营业额',
+                            'hall_order':'堂食账单数',
+                            'takeout_turnover':'外卖营业额',
+                            'takeout_order':'外卖账单数',
+                            'orders':'账单总数',
+                        },
+                        metrics: ['turnover','hall_turnover','takeout_turnover']
+                    },
+                    is_turnover:true, //是否展示营业额数据
+                    is_order:false  //是否展示账单数据
+                },
+                mounted () {
+                    window.show_dialog = this.show_dialog;
+                },
+                methods:{
+                    handlePreview(file) {    //预览附件
+                        this.dialogImageUrl = file.url;
+                        this.dialogVisible = true;
+                    },
+                    handleRemove(file, fileList){ //s删除图片
+
+                    },
+                    handleClick(tab) {   //选择展示的dialog
+                        if(tab.name=="first"){
+                            this.firstflag=true,
+                            this.secondflag=false,
+                            this.thirdflag=false,
+                            this.fourthflag=false
+                        }else if(tab.name=="second"){
+                            this.firstflag=false,
+                            this.secondflag=true,
+                            this.thirdflag=false,
+                            this.fourthflag=false
+                        }else if(tab.name=="third"){
+                            this.firstflag=false,
+                            this.secondflag=false,
+                            this.thirdflag=true,
+                            this.fourthflag=false
+                        }else{
+                            this.firstflag=false,
+                            this.secondflag=false,
+                            this.thirdflag=false,
+                            this.fourthflag=true
+                        }
+                    },
+                    show_dialog(data){   //展示dialog的信息部分
+                        let _this = this;
+                        $.ajax({
+                            url:"http://localhost:8080/baidu_map/dialog_data",
+                            type:"GET",
+                            dataType:"JSON",
+					        data : {StoreID:data.storeID},
+					        contentType: "application/x-www-form-urlencoded",
+                            success:function(data){
+                                _this.info = data.data
+                            }
+                        });
+                        $.ajax({
+                            url:"http://localhost:8080/baidu_map/visit_data",
+                            type:"GET",
+                            dataType:"JSON",
+                            data:{StoreID:data.storeID},
+                            contentType:"application/x-www-form-urlencoded",
+                            success:function(result){
+                                _this.fits=result.data
+                            }
+                        });
+                        $.ajax({  //折线图数据
+                            url:"http://localhost:8080/baidu_map/sale_data",
+                            type:"GET",
+                            dataType:"JSON",
+					        data : {Type:5,ID:data.storeID},
+					        contentType: "application/x-www-form-urlencoded",
+                            success:function(data){
+                                _this.chartData.rows = data.data
+                                _this.sale_data = data.data
+                                _this.Data = data.data
+                            }
+                        })
+                        this.dialogTableVisible=true;    
+                    },
+                    handleChange(file, fileList) {   //图片列表转移
+                        this.fileList = fileList;
+                    },
+                    add_text(){   //添加拜访记录
+                       let files = this.fileList;
+                        var formData = new FormData();
+                        formData.append("visitTime",this.formLabelAlign.visitTime);
+                        formData.append("visitor",this.formLabelAlign.visitor);
+                        formData.append("Comment",this.formLabelAlign.Comment);
+                        formData.append("storeID",this.info.storeid)
+                        
+                        for(var i=0;i<files.length;i++){
+                            formData.append("files",files[i].raw)
+                        }
+                        $.ajax({
+                            url:'http://localhost:8080/baidu_map/post_visits',
+                            contentType: false,
+                            method: "POST", 
+                            processData:false,
+                            data:formData,
+                            success:(e)=>{
+                                alert(e.message)
+                            }
+                        })
+
+                        this.formLabelAlign.visitTime='';
+                        this.formLabelAlign.visitor='';
+                        this.formLabelAlign.Comment='';
+                        this.fileList=[];
+                    },
+                    change_time(){ //可以获取时间信息
+                        let start = this.value1[0];
+                        let end = this.value1[1];
+                        let data = this.Data;
+                        let flag1 = -1;
+                        let flag2 = -1;
+                        let newdata= [];
+                        for(var i=0;i<data.length;i++){
+                            if(start==data[i].date){
+                                flag1 = i;
+                            }
+                            if(end==data[i].date){
+                                flag2 = i;
+                            }
+                        }
+                        if(flag1==-1){
+                            flag1 = 0;
+                        }
+                        if(flag2==-1){
+                            flag2 = data.length-1;
+                        }
+                        for(var i=flag1;i<=flag2;i++){
+                            newdata.push(data[i])
+                        }
+                        this.chartData.rows = newdata;
+                        this.sale_data = newdata; 
+                    },
+                    change_radio(){  //选择展示的数据
+                        if(this.radio=="账单数"){
+                            this.chartSettings.metrics=['orders','hall_order','takeout_order']
+                            this.is_turnover = false
+                            this.is_order = true
+                        }else if(this.radio=="营业额"){
+                            this.chartSettings.metrics=['turnover','hall_turnover','takeout_turnover']
+                            this.is_turnover = true
+                            this.is_order = false
+                        }
+                    },
+                }
+            })
+    </script>
+</body>  
+</html>

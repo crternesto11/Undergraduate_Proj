@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <typeAliases>
+        <typeAlias alias="Integer" type="java.lang.Integer"/>
+        <typeAlias alias="Long" type="java.lang.Long"/>
+        <typeAlias alias="HashMap" type="java.util.HashMap"/>
+        <typeAlias alias="LinkedHashMap" type="java.util.LinkedHashMap"/>
+        <typeAlias alias="ArrayList" type="java.util.ArrayList"/>
+        <typeAlias alias="LinkedList" type="java.util.LinkedList"/>
+        <typeAlias alias="Business" type="com.fellowchicken.model.Business"/>
+        <typeAlias alias="City" type="com.fellowchicken.model.City"/>
+        <typeAlias alias="Minimarket" type="com.fellowchicken.model.Minimarket"/>
+        <typeAlias alias="Oppo" type="com.fellowchicken.model.Oppo"/>
+        <typeAlias alias="Store" type="com.fellowchicken.model.Store"/>
+        <typeAlias alias="User" type="com.fellowchicken.model.User"/>
+        <typeAlias alias="Visit" type="com.fellowchicken.model.Visit"/>
+        <typeAlias alias="Warzone" type="com.fellowchicken.model.Warzone"/>
+    </typeAliases>
+    <mappers>
+        <mapper resource="mybatis/mapper/BusinessMapper.xml"/>
+        <mapper resource="mybatis/mapper/CityMapper.xml"/>
+        <mapper resource="mybatis/mapper/MinimarketMapper.xml"/>
+        <mapper resource="mybatis/mapper/OppoMapper.xml"/>
+        <mapper resource="mybatis/mapper/StoreMapper.xml"/>
+        <mapper resource="mybatis/mapper/UserMapper.xml"/>
+        <mapper resource="mybatis/mapper/VisitMapper.xml"/>
+        <mapper resource="mybatis/mapper/WarzoneMapper.xml"/>
+    </mappers>
+</configuration>

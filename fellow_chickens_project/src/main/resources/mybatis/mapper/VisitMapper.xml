@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fellowchicken.mapper.VisitMapper">
+    <insert id="add" parameterType="com.fellowchicken.model.Visit" useGeneratedKeys="true" keyProperty="visitID">
+        insert into visit(VisitTime, Visitor, Comment, Files, storeID)
+        values (#{visit.visitTime}, #{visit.visitor}, #{visit.comment}, #{visit.files}, #{visit.storeID})
+    </insert>
+</mapper>

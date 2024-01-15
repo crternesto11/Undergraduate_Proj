@@ -1,0 +1,679 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>门店管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Easy Admin Panel Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.min.css" rel='stylesheet' type='text/css'/>
+
+    <!-- Custom CSS -->
+    <link href="../css/style.css" rel='stylesheet' type='text/css'/>
+
+    <!-- Graph CSS -->
+    <link href="../css/font-awesome.css" rel="stylesheet">
+
+    <!-- lined-icons -->
+    <link rel="stylesheet" href="../css/icon-font.min.css" type='text/css'/>
+    <!-- //lined-icons -->
+
+    <!-- chart -->
+    <script src="../js/Chart.js"></script>
+    <!-- //chart -->
+
+    <!--animate-->
+    <link href="../css/animate.css" rel="stylesheet" type="text/css" media="all">
+    <script src="../js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+    <!--//end-animate-->
+
+    <!----webfonts--->
+    <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic'
+          rel='stylesheet' type='text/css'>
+    <!---//webfonts--->
+
+    <!-- jQuery -->
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <!-- Placed js at the end of the document so the pages load faster -->
+
+</head>
+
+<body class="sticky-header left-side-collapsed">
+<section>
+    <!-- left side start-->
+    <div class="left-side sticky-left-side">
+
+        <!--logo and iconic logo start-->
+        <div class="logo">
+            <h1><a href="index.html">Easy <span>Admin</span></a></h1>
+        </div>
+
+        <div class="logo-icon text-center">
+            <a href="index.html"> <img src='../images/logo.jpg' class="img-responsive" alt=""/></a>
+        </div>
+
+        <!--logo and iconic logo end-->
+        <div class="left-side-inner">
+
+            <!--sidebar nav start-->
+            <ul class="nav nav-pills nav-stacked custom-nav">
+                <li><a href="map.html"><i class="lnr lnr-earth"></i><span>门店分布</span></a></li>
+                <li><a href="Area.html"><i class="lnr lnr lnr-hourglass"></i><span>区域管理</span></a></li>
+                <li class="active"><a href="store.html"><i class="lnr lnr-store"></i> <span>门店管理</span></a></li>
+                <!--<li><a href="analysis.html"><i class="lnr lnr-hourglass"></i> <span>销售分析</span></a></li>-->
+                <li><a href="login.html"><i class="lnr lnr-power-switch"></i> <span>注销</span></a></li>
+            </ul>
+            <!--sidebar nav end-->
+        </div>
+    </div>
+    <!-- left side end-->
+
+    <!-- main content start-->
+    <div class="main-content main-content4">
+        <div id="page-wrapper">
+            <div class="graphs">
+                <h3 class="blank1">区域管理</h3>
+                <div class="mail-toolbar clearfix">
+                    <div class="float-left">
+                        <div class="dropdown">
+                            <label for="select"></label><select id="select">
+                            <option>门店管理</option>
+                            <option>机会点管理</option>
+                        </select>
+                            <button id='turn' style="float: right;border-color: #FFFFFF;color:#5B5B5B">确定</button>
+                        </div>
+                    </div>
+
+                    <div class="float-right">
+                        当前是第
+                        <span class="text-muted m-r-sm" id="pages"></span>
+                        页
+                        <div class="btn-group">
+                            <a class="btn btn-default" id="left-page"><i class="fa fa-angle-left"></i></a>
+                            <a class="btn btn-default" id="right-page"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="xs tabls">
+                    <!--<div class="bs-example4" data-example-id="contextual-table">-->
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>门店ID</th>
+                            <th>门店名称</th>
+                            <th>门店地址</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody">
+
+                        </tbody>
+                    </table>
+                    <!--</div>-->
+                    <div class="mail-toolbar clearfix">
+                        <table>
+                            <tbody style="text-align: center">
+                            <tr>
+                                <td>
+                                    <button id='add' style="border-color: #FFFFFF;color:#5B5B5B">新增</button>
+                                </td>
+                                <td>
+                                    <button id='modify' style="border-color: #FFFFFF;color:#5B5B5B">修改</button>
+                                </td>
+                                <td>
+                                    <button id='delete' style="border-color: #FFFFFF;color:#5B5B5B">删除</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <input type="hidden" value="" id="sp">
+
+                        <form style="margin-top: 20px;background-color: #a4f5a9;height: 250px;visibility: hidden"
+                              id="form">
+                            <div style="width: 100%">
+                                <div style="float: left;margin-left: 10%;margin-top: 20px">
+                                    <label for="st-name">店名：</label><input type="text" id="st-name">
+                                </div>
+                                <div style="float: left;margin-left: 5%;margin-top: 20px">
+                                    <label for="st-address">地址：</label><input type="text" id="st-address">
+                                </div>
+                                <div style="float: left;margin-left: 5%;margin-top:20px">
+                                    <label for="st-mini">所在迷你市场编号：</label><input type="text" id="st-mini">
+                                </div>
+                            </div>
+                            <div style="width: 100%;float: left;margin-left: 25%;margin-top: 10px">
+                                <label for="st-j">经度：</label><input type="text" id="st-j">
+                                <label for="st-w">纬度：</label><input type="text" id="st-w">
+                            </div>
+
+                            <div style="float: left;margin-left: 10%;margin-top: 30px">
+                                <hr style="height:1px;border-top:1px solid #000000;"/>
+                                <label for="st-open">开业时间：</label><input type="text" id="st-open">
+                                <label for="st-mode">模式：</label><input type="text" id="st-mode">
+                                <label for="st-floor">楼层：</label><input type="text" id="st-floor">
+                                <label for="st-sq">面积：</label><input type="text" id="st-sq">
+                            </div>
+
+                            <div style="float:left;margin-left: 35%">
+                                <button id='confirm' style="border-color: #FFFFFF;color:#5B5B5B;margin-top: 20px">确定
+                                </button>
+                            </div>
+
+                            <div style="float:left;margin-left: 20%">
+                                <button id='no' style="border-color: #FFFFFF;color:#5B5B5B;margin-top: 20px">取消</button>
+                            </div>
+
+                            <div style="float:left;margin-left: 20%;visibility: hidden">
+                                <button id='change' style="border-color:#f5ee00 ;color:#000000;margin-top: 20px">
+                                    转为正式门店
+                                </button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer section start-->
+    <footer>
+        <p>&copy 2022 Fellow Chicken Store Sale Management System. | In case of infringement, please contact to
+            delete.</p>
+    </footer>
+    <!--footer section end-->
+</section>
+
+<script src="../js/jquery.nicescroll.js"></script>
+<script src="../js/scripts.js"></script>
+<script>
+    $(function () {
+        refurbishIndex();
+    })
+
+    //初始化表格
+    function refurbishIndex() {
+        const index = document.getElementById("select").value;
+        if (index === "门店管理") {
+            $.ajax({
+                type: "get",
+                url: "http://localhost:8080/field_management/store/fixed_page",
+                dataType: "json",
+                data: {
+                    index: 1
+                },
+                success: function (result) {
+                    let d;
+                    let str = "";
+                    for (d = 0; d < 8; d++) {
+                        let t = d + 1
+                        str += "<tr><th scope=\"row\">" + t + "</th>" +
+                            "<td>" + result.data["records"][d]["storeID"].toString() + "</td>" +
+                            "<td>" + result.data["records"][d]["storeName"].toString() + "</td>" +
+                            "<td>" + result.data["records"][d]["address"].toString() + "</td>" +
+                            "<td><input type = checkbox value=" + result.data["records"][d]["storeID"].toString() + "></td></tr>"
+                    }
+                    document.getElementById("tbody").innerHTML = str;
+                    document.getElementById("pages").innerText = String(1);
+                }
+            })
+        } else {
+            $.ajax({
+                type: "get",
+                url: "http://localhost:8080/field_management/oppo/fixed_page",
+                dataType: "json",
+                data: {
+                    index: 1
+                },
+                success: function (result) {
+                    let d;
+                    let str = "";
+                    for (d = 0; d < 8; d++) {
+                        let t = d + 1
+                        str += "<tr><th scope=\"row\">" + t + "</th>" +
+                            "<td>" + result.data["records"][d]["oppoID"].toString() + "</td>" +
+                            "<td>-</td>" +
+                            "<td>" + result.data["records"][d]["address"].toString() + "</td>" +
+                            "<td><input type = checkbox value=" + result.data["records"][d]["oppoID"].toString() + "></td></tr>"
+                    }
+                    document.getElementById("tbody").innerHTML = str;
+                    document.getElementById("pages").innerText = String(1);
+                }
+            });
+        }
+    }
+
+    //输入数据格式检查
+    function data_check() {
+        const smini = document.getElementById("st-mini").value;
+        const sj = document.getElementById("st-j").value;
+        const sw = document.getElementById("st-w").value;
+
+        if (isNaN(smini)) //如果x不是数字就执行这个if语句，如果是数字就不执行这个if语句
+        {
+            alert("输入所属迷你市场请数字！"); //弹框
+            return true;
+        }
+
+        if (isNaN(sj)) //如果x不是数字就执行这个if语句，如果是数字就不执行这个if语句
+        {
+            alert("输入经度必须为数字！"); //弹框
+            return true;
+        }
+
+        if (isNaN(sw)) //如果x不是数字就执行这个if语句，如果是数字就不执行这个if语句
+        {
+            alert("纬度请输入数字！"); //弹框
+            return true;
+        }
+        return false;
+    }
+
+    // 左右翻页
+    $(function () {
+        $('#left-page').click(function () {
+            const index = document.getElementById("select").value;
+            let page = parseInt(document.getElementById("pages").innerText);
+            if (page > 1) {
+                page--;
+            }
+            if (index === "门店管理") {
+                $.ajax({
+                    type: "get",
+                    url: "http://localhost:8080/field_management/store/fixed_page",
+                    dataType: "json",
+                    data: {
+                        index: page
+                    },
+                    success: function (result) {
+                        let d;
+                        let str = "";
+                        if (index === "门店管理") {
+                            for (d = 0; d < 8; d++) {
+                                let t = d + 1
+                                str += "<tr><th scope=\"row\">" + t + "</th>" +
+                                    "<td>" + result.data["records"][d]["storeID"].toString() + "</td>" +
+                                    "<td>" + result.data["records"][d]["storeName"].toString() + "</td>" +
+                                    "<td>" + result.data["records"][d]["address"].toString() + "</td>" +
+                                    "<td><input type = checkbox value=" + result.data["records"][d]["storeID"].toString() + "></td></tr>"
+                            }
+                        }
+                        document.getElementById("tbody").innerHTML = str;
+                        document.getElementById("pages").innerText = page.toString();
+                    }
+                })
+            } else {
+                $.ajax({
+                    type: "get",
+                    url: "http://localhost:8080/field_management/oppo/fixed_page",
+                    dataType: "json",
+                    data: {
+                        index: page
+                    },
+                    success: function (result) {
+                        let d;
+                        let str = "";
+                        for (d = 0; d < 8; d++) {
+                            let t = d + 1
+                            str += "<tr><th scope=\"row\">" + t + "</th>" +
+                                "<td>" + result.data["records"][d]["oppoID"].toString() + "</td>" +
+                                "<td>-</td>" +
+                                "<td>" + result.data["records"][d]["address"].toString() + "</td>" +
+                                "<td><input type = checkbox value=" + result.data["records"][d]["oppoID"].toString() + "></td></tr>"
+                        }
+                        document.getElementById("tbody").innerHTML = str;
+                        document.getElementById("pages").innerText = page.toString();
+                    }
+                });
+            }
+        })
+    })
+
+    $(function () {
+        $('#right-page').click(function () {
+            const index = document.getElementById("select").value;
+            let page = parseInt(document.getElementById("pages").innerText);
+            page++;
+            if (index === "门店管理") {
+                $.ajax({
+                    type: "get",
+                    url: "http://localhost:8080/field_management/store/fixed_page",
+                    dataType: "json",
+                    data: {
+                        index: page
+                    },
+                    success: function (result) {
+                        if (result.data["pages"] > page) {
+                            page++;
+                        }
+                        let d;
+                        let str = "";
+                        for (d = 0; d < Math.min(8, result.data["total"] - page * 8); d++) {
+                            let t = d + 1;
+                            str += "<tr><th scope=\"row\">" + t + "</th>" +
+                                "<td>" + result.data["records"][d]["storeID"].toString() + "</td>" +
+                                "<td>" + result.data["records"][d]["storeName"].toString() + "</td>" +
+                                "<td>" + result.data["records"][d]["address"].toString() + "</td>" +
+                                "<td><input type = checkbox value=" + result.data["records"][d]["storeID"].toString() + "></td></tr>"
+                        }
+                        document.getElementById("tbody").innerHTML = str;
+                        document.getElementById("pages").innerText = String(page);
+                    }
+                })
+            } else {
+                $.ajax({
+                    type: "get",
+                    url: "http://localhost:8080/field_management/oppo/fixed_page",
+                    dataType: "json",
+                    data: {
+                        index: page
+                    },
+                    success: function (result) {
+                        if (result.data["pages"] > page) {
+                            page++;
+                        }
+                        let d;
+                        let str = "";
+                        for (d = 0; d < Math.min(8, result.data["total"] - page * 8); d++) {
+                            let t = d + 1;
+                            str += "<tr><th scope=\"row\">" + t + "</th><td>" + result.data["records"][d]["oppoID"].toString() + "</td>" +
+                                "<td>-</td><td>" + result.data["records"][d]["address"].toString() + "</td><td><input type = checkbox value=" +
+                                result.data["records"][d]["oppoID"].toString() + "></td></tr>";
+                        }
+                        document.getElementById("tbody").innerHTML = str;
+                        document.getElementById("pages").innerText = String(page);
+                    }
+                });
+            }
+        })
+    })
+
+    //点击“增加”按钮，显示隐藏内容
+    $(function () {
+        $('#add').click(function () {
+            document.getElementById("form").style.visibility = "visible"
+            document.getElementById("sp").value = "";
+        })
+    })
+
+    //插入
+    $(function () {
+        $('#confirm').click(function () {
+            if (data_check()) {
+                return 0;
+            }
+
+            const sid = document.getElementById("sp").value;
+            const sname = document.getElementById("st-name").value;
+            const saddress = document.getElementById("st-address").value;
+            const smini = document.getElementById("st-mini").value;
+            const sj = document.getElementById("st-j").value;
+            const sw = document.getElementById("st-w").value;
+            const sopen = document.getElementById("st-open").value;
+            const sfloor = document.getElementById("st-floor").value;
+            const smode = document.getElementById("st-mode").value;
+            const ssq = document.getElementById("st-sq").value;
+            const index = document.getElementById("select").value;
+
+            if (index === "门店管理") {
+                $.ajax({
+                    type: "get",
+                    url: "http://localhost:8080/field_management/store/add_store",
+                    dataType: "json",
+                    data: {
+                        storeID: sid,
+                        storeName: sname,
+                        minimarketID: smini,
+                        address: saddress,
+                        longitude: sj,
+                        latitude: sw,
+                        openingTime: sopen,
+                        storeMode: smode,
+                        floor: sfloor,
+                        square: ssq,
+                    },
+                    success: function () {
+                        alert('成功!');
+                    },
+                    error: function () {
+                        alert('失败!');
+                    }
+                });
+                document.getElementById("st-name").value = "";
+                document.getElementById("st-address").value = "";
+                document.getElementById("st-mini").value = "";
+                document.getElementById("st-j").value = "";
+                document.getElementById("st-w").value = "";
+                document.getElementById("st-open").value = "";
+                document.getElementById("st-floor").value = "";
+                document.getElementById("st-mode").value = "";
+                document.getElementById("st-sq").value = "";
+            } else {
+                $.ajax({
+                    type: "get",
+                    url: "http://localhost:8080/field_management/oppo/add_oppo",
+                    dataType: "json",
+                    data: {
+                        minimarketID: smini,
+                        address: saddress,
+                        trans: false,
+                    },
+                    success: function () {
+                        alert('成功!');
+                    },
+                    error: function () {
+                        alert('失败!');
+                    }
+                });
+                document.getElementById("st-address").value = "";
+                document.getElementById("st-mini").value = "";
+            }
+        });
+    })
+
+    //修改信息
+    $(function () {
+        $('#modify').click(function () {
+            let i = 0;
+            let sid = "";
+            $('input:checkbox').each(function () {
+
+                if ($(this).prop('checked') === true) {
+                    i++;
+                    sid = $(this).val();
+                }
+            });
+            if (i === 1) {
+                const index = document.getElementById("select").value;
+                document.getElementById("form").style.visibility = "visible";
+                if (index === "门店管理") {
+                    $.ajax({
+                        type: "get",
+                        url: "http://localhost:8080/field_management/store/get_store",
+                        dataType: "json",
+                        data: {
+                            id: sid
+                        },
+                        success: function (result) {
+                            document.getElementById("sp").value = sid;
+                            document.getElementById("st-name").value = result.data["storeName"];
+                            document.getElementById("st-address").value = result.data["address"];
+                            document.getElementById("st-mini").value = result.data["minimarketID"];
+                            document.getElementById("st-j").value = result.data["lon"];
+                            document.getElementById("st-w").value = result.data["lat"];
+                            document.getElementById("st-open").value = result.data["openingTime"];
+                            document.getElementById("st-floor").value = result.data["floor"];
+                            document.getElementById("st-mode").value = result.data["storeMode"];
+                            document.getElementById("st-sq").value = result.data["square"];
+                        }
+                    })
+                } else {
+                    $.ajax({
+                        type: "get",
+                        url: "http://localhost:8080/field_management/oppo/get_oppo",
+                        dataType: "json",
+                        data: {
+                            oppoID: sid
+                        },
+                        success: function (result) {
+                            document.getElementById("sp").value = sid;
+                            document.getElementById("st-address").value = result.data["address"];
+                            document.getElementById("st-mini").value = result.data["minimarketID"];
+                            document.getElementById("change").style.visibility = "visible";
+                        },
+                        error: function () {
+                            alert("出错了");
+                        }
+                    });
+                }
+            } else {
+                alert("未选择单条信息！");
+            }
+        })
+    })
+
+    //删除信息
+    $(function () {
+        $('#delete').click(function () {
+            let i = 0;
+            let sid = "";
+            $('input:checkbox').each(function () {
+
+                if ($(this).prop('checked') === true) {
+                    i++;
+                    sid = $(this).val();
+                }
+            });
+            if (i === 1) {
+                const index = document.getElementById("select").value;
+                if (index === "门店管理") {
+                    $.ajax({
+                        type: "get",
+                        url: "http://localhost:8080//field_management/store/delete_store",
+                        dataType: "json",
+                        data: {
+                            id: sid
+                        },
+                        success: function (result) {
+                            if (result.data) {
+                                alert("删除成功~");
+                                refurbishIndex();
+                            } else {
+                                alert("删除成功~");
+                                refurbishIndex();
+                            }
+                        },
+                        error: function () {
+                            alert("删除成功~");
+                            refurbishIndex();
+                        }
+                    })
+                } else {
+                    $.ajax({
+                        type: "get",
+                        url: "http://localhost:8080//field_management/oppo/delete_oppo",
+                        dataType: "json",
+                        data: {
+                            id: sid
+                        },
+                        success: function (result) {
+                            if (result.data) {
+                                alert("删除成功~");
+                                refurbishIndex();
+                            } else {
+                                alert("删除成功~");
+                                refurbishIndex();
+                            }
+                        },
+                        error: function () {
+                            alert("删除成功~");
+                            refurbishIndex();
+                        }
+                    })
+                }
+            } else {
+                alert("未选择单条信息！");
+            }
+        })
+    })
+
+    //页面转换
+    $(function () {
+        $('#turn').click(function () {
+            document.getElementById("pages").innerText = String(1);
+            refurbishIndex();
+            document.getElementById("st-name").value = "未定";
+            document.getElementById("st-j").value = 0;
+            document.getElementById("st-w").value = 0;
+            document.getElementById("st-open").value = 0;
+            document.getElementById("st-floor").value = 0;
+            document.getElementById("st-mode").value = 0;
+            document.getElementById("st-sq").value = 0;
+        })
+    })
+
+    $(function () {
+        $('#change').click(function () {
+            if (data_check()) {
+                return 0;
+            }
+            const oid = document.getElementById("sp").value
+            const sname = document.getElementById("st-name").value;
+            const saddress = document.getElementById("st-address").value;
+            const smini = document.getElementById("st-mini").value;
+            const sj = document.getElementById("st-j").value;
+            const sw = document.getElementById("st-w").value;
+            const sopen = document.getElementById("st-open").value;
+            const sfloor = document.getElementById("st-floor").value;
+            const smode = document.getElementById("st-mode").value;
+            const ssq = document.getElementById("st-sq").value;
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8080/Store/change",
+                dataType: "json",
+                data: {
+                    "oid": oid,
+                    "sname": sname,
+                    "saddress": saddress,
+                    "smini": smini,
+                    "sj": sj,
+                    "sw": sw,
+                    "smode": smode,
+                    "ssq": ssq,
+                    "sopen": sopen,
+                    "sfloor": sfloor,
+                },
+                success: function () {
+                    alert("转正成功~");
+                    refurbishIndex();
+                },
+                error: function () {
+                    alert("转正成功~");
+                    refurbishIndex();
+                }
+            });
+
+
+        })
+    })
+</script>
+<!-- Bootstrap Core JavaScript -->
+<script src="../js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fellowchicken.mapper.OppoMapper">
+    <insert id="add" parameterType="com.fellowchicken.model.Oppo" useGeneratedKeys="true" keyProperty="oppoID">
+        insert into oppo(MinimarketID, Address, Trans, VisitID)
+        values (#{oppo.minimarketID}, #{oppo.address}, #{oppo.visitID})
+    </insert>
+</mapper>

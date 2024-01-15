@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fellowchicken.mapper.StoreMapper">
+    <insert id="add" parameterType="com.fellowchicken.model.Store" useGeneratedKeys="true" keyProperty="storeID">
+        insert into store(StoreName, MinimarketID, Address, Lon, Lat,OpeningTime,StoreMode,Floor,Square,License,Photo)
+        values (#{store.storeName}, #{store.minimarketID}, #{store.address}, #{store.lon}, #{store.lat}, #{store.openingTime}, #{store.storeMode}, #{store.floor}, #{store.square}, #{store.license}, #{store.photo})
+    </insert>
+</mapper>

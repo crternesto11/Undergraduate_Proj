@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+	
+	<meta charset="utf-8">
+	<title>注册</title>
+	
+    <!-- Meta-Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- style CSS -->
+    <link rel="stylesheet" href="../css/style1.css" type="text/css" media="all">
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css" media="all">
+
+    <!-- google fonts -->
+    <link href="//fonts.googleapis.com/css?family=Mukta:300,400,500" rel="stylesheet">
+	<script charset="utf-8" src="/js/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript">
+		$().ready(function () {
+			$('#SigninItem').click(function () {
+				var password1 = $("#password1").val();
+				var password2 = $("#password2").val();
+				if(password1==password2){
+					$.ajax({
+						url: "http://localhost:8080/user/sign_up",
+						type: "get",
+						dataType: "json",
+						data: {
+							UserName: $("#username").val(),
+							Email: $("#email").val(),
+							Phone: $("#phone").val(),
+							Password: $("#password1").val(),
+						},
+						success: function (result) {
+							alert("请记住你的编号："+result.data)
+							window.location.href="login.html";
+						}
+					})
+				}else{
+					alert("两次密码输入不一致！请重新输入！")
+				}
+
+			});
+		})
+	</script>
+
+	<style>
+		#SigninItem{
+			display: block;
+			width: 100%;
+			height: 45px;
+			color: white;
+			border-radius: 20px;
+			font-size: 20px;
+			line-height: 45px;
+			text-align: center;
+			background-color: #a3b955;
+		}
+		.bbb{
+			color:white;
+		}
+	</style>
+	
+</head>
+
+<body>
+	
+    <section class="main">
+			<div id="page-wrapper" class="sign-in-wrapper">
+			  <div class="graphs">
+					<div class="sign-up">
+						<h3><strong>注册</strong></h3>
+<p class="creating">请在以下信息框中填入相应信息。注意：1.每个信息都为必填；2.两次密码需要输入一致。</p>
+						<h5>个人信息</h5>
+						<div class="sign-u">
+							<div class="sign-up1">
+								<h4>姓名* :</h4>
+							</div>
+							<div class="sign-up2">
+								<form>
+									<input class="bbb" id="username" type="text" placeholder=" " required=" "/>
+								</form>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="sign-u">
+							<div class="sign-up1">
+								<h4>Email* :</h4>
+							</div>
+							<div class="sign-up2">
+								<form>
+									<input class="bbb" id="email" type="text" placeholder=" " required=" "/>
+								</form>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="sign-u">
+							<div class="sign-up1">
+								<h4>手机号码* :</h4>
+							</div>
+							<div class="sign-up2">
+								<form>
+									<input class="bbb" id="phone" type="text" placeholder=" " required=" "/>
+								</form>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<h6>注册信息</h6>
+						<div class="sign-u">
+							<div class="sign-up1">
+								<h4>密码* :</h4>
+							</div>
+							<div class="sign-up2">
+								<form>
+									<input class="bbb" id="password1" type="password" placeholder=" " required=" "/>
+								</form>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="sign-u">
+							<div class="sign-up1">
+								<h4>再次输入密码* :</h4>
+							</div>
+							<div class="sign-up2">
+								<form>
+									<input class="bbb" id="password2" type="password" placeholder=" " required=" "/>
+								</form>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+						<div class="sub_home">
+							<div class="wthree-field">
+								<form>
+									<span id="SigninItem" class="btn">注  册</span>
+								</form>
+							</div>
+							<div class="sub_home_right">
+								<p>Go Back to <a href="index.html">Home</a></p>
+							</div>
+							<div class="clearfix"> </div>
+						</div>
+					</div>
+				</div>
+			</div>
+    </section>
+	
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+	
+	<meta charset="utf-8">
+	<title>登录</title>
+	
+    <!-- Meta-Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- style CSS -->
+    <link rel="stylesheet" href="../css/style1.css" type="text/css" media="all">
+
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css" media="all">
+
+    <!-- google fonts -->
+<!--    <link href="//fonts.googleapis.com/css?family=Mukta:300,400,500" rel="stylesheet">-->
+    <script charset="utf-8" src="/js/jquery-3.6.0.min.js"></script>
+
+	<script type="text/javascript">
+        $().ready(function () {
+            $('#loginItem').click(function () {
+                $.ajax({
+                    url: "http://localhost:8080/user/sign_in",
+                    type: "get",
+                    dataType: "json",
+                    data: {
+                        UserID: $("#UserID").val(),
+                        Password: $("#Password").val()
+                    },
+                    success: function (result) {
+                        if(result.data){
+                            window.location.href="map.html";
+                        }else{
+                            alert("密码错误或用户不存在！")
+                        }
+                    }
+                })
+            });
+        })
+	</script>
+	<style>
+        #loginItem{
+            display: block;
+            width: 100%;
+            height: 45px;
+            color: white;
+            border-radius: 20px;
+            font-size: 27px;
+            line-height: 45px;
+            text-align: center;
+            background-color: #a3b955;
+        }
+    </style>
+</head>
+
+<body>
+	
+    <section class="main">
+
+        <div class="bottom-grid">
+            <div class="logo">
+                <h1> <a href="index.html"> 老乡鸡门店销售管理系统</a></h1>
+            </div>
+        </div>
+        <div class="content-w3ls">
+            <div class="text-center icon">
+                <span class="fa fa-meetup"></span>
+            </div>
+
+            <div class="content-bottom">
+               <form id="myform">
+                    <div class="field-group">
+                        <span class="fa fa-user" aria-hidden="true"></span>
+                        <div class="wthree-field">
+                            <input name="UserID" id="UserID" type="number" placeholder="用户名">
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <span class="fa fa-lock" aria-hidden="true"></span>
+                        <div class="wthree-field">
+                            <input name="Password" id="Password" type="password" placeholder="密码">
+                        </div>
+                    </div>
+                    <span class="wthree-field">
+                 
+                        <span id="loginItem" class="btn">登录</span>
+                                       </span>
+                    <ul class="list-login">
+                        <li class="switch-agileits">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                                自动登录
+                            </label>
+                        </li>
+                        <li>
+                            <a href="#" class="text-right">忘记密码？</a>
+                        </li>
+                        <li class="clearfix"></li>
+                    </ul>
+                    <ul class="list-login-bottom">
+                        <li class="">
+                            <a href="signin.html" class="">注册</a>
+                        </li>
+                        <li class="">
+                            <a href="" class="text-right">帮助?</a>
+                        </li>
+                        <li class="clearfix"></li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2022 Fellow Chicken Store Sale Management System. | In case of infringement, please contact to delete</p>
+        </div>
+    </section>
+</body>
+</html>

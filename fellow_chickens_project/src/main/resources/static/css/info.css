@@ -1,0 +1,127 @@
+.info_left{
+    float: left;
+    margin-right: 10%;
+    width: 20%;
+}
+
+.info_right{
+    float: left;
+    width: 70%;
+}
+
+.cert{
+    height: 25px;
+    width: 100%;
+    font-size: 12px;
+    line-height: 30px;
+    margin-top: 30px;
+    border-bottom: 1px solid #DFDFDF;
+}
+
+.upper{
+    height: 320px;
+}
+
+.miaoshaInfo2{
+    height: 30px;
+    width: 100%;
+    clear: both;
+}
+
+.miaoshaInfo1{
+    height: 40px;
+    width: 100%;
+}
+.miaoshaInfo_left{
+    float: left;
+    width: 80px;
+    line-height: 40px;
+    font-size: 12px;
+    color: #999999;
+    text-align: left;
+    margin-left: 10px;
+}
+.miaoshaInfo_middle{
+    float: left;
+    line-height: 40px;
+    margin-left: 10px;
+}
+#jiangjia{
+    color: #415AA5;
+    font-size: 13px;
+}
+#jiangjia:hover{
+    color: #E4393C;
+}
+.miaoshaInfo_right{
+    height: 30px;
+    margin-top: 5px;
+    padding-left: 10px;
+    margin-right: 10px;
+    float: right;
+    border-left: 1px solid #E6E6E6;
+}
+#leiji{
+    color: #415AA5;
+    font-size: 13px;
+}
+#leiji:hover{
+    color: #E4393C;
+}
+.miaoshaInfo2{
+    height: 30px;
+    width: 100%;
+    clear: both;
+}
+.miaoshaInfo2_a{
+    float: left;
+    width: 80px;
+    line-height: 20px;
+    font-size: 12px;
+    color: #999999;
+    text-align: left;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+.miaoshaInfo2_b{
+    width: 90px;
+    height: 18px;
+    float: left;
+    margin-left: 5px;
+    font-size:12px;
+    line-height: 20px;
+    text-align: left;
+    background-color: #FFDEDF;
+    border:1px solid #DF3033;
+}
+.miaoshaInfo2_b:hover{
+    background-color:#FFF4F4;
+}
+.miaoshaInfo2_c {
+    width: 100px;
+    height: 18px;
+    float: left;
+    margin-left: 5px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: left;
+}
+
+.info_right_big{
+    height: 56px;
+    width: 100%;
+    padding-top: 10px;
+    margin-bottom: 5px;
+    font-size: 30px;
+    line-height: 27px;
+}
+
+.special_title{
+    margin-top: 5px;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 10px;
+    background-color: rgb(232, 69, 64);
+    /*background-image: url(../images/back1.png);*/
+    color: #fff;
+}

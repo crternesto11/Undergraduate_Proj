@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title> 发帖 </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+  
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
+
+    <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" id="theme-styles">
+
+    <!--[if lt IE 9]>      
+        <script src="js/vendor/google/html5-3.6-respond-1.1.0.min.js"></script>
+    <![endif]-->
+    
+</head>
+<body onload="init()">
+    <script src="js/header.js"></script>
+
+    <div class="widewrapper main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 clean-superblock" id="contact">
+                    <h2> 编辑你要发布的帖子 </h2>
+                    <form action="post.aspx" method="post" accept-charset="utf-8" class="contact-form">
+                        <input name="Login2" id="post-user" hidden>
+                        <input type="text" name="Title" id="contact-name" placeholder="请输入帖子的标题" class="form-control input-lg">
+                        <textarea rows="20" name="Content" id="contact-body" placeholder="请输入你要发布的内容" class="form-control input-lg"></textarea>
+                        <div class="buttons clearfix">
+                            <button type="submit" class="btn btn-xlarge btn-clean-one" onclick="post()">发布</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/footer.js"></script>
+    <script src="js/post.js"></script>
+    <div id="result"></div>
+    <script src="js/footer.js"></script>
+    <script src="js/cookie.js"></script>
+
+
+</body>
+</html>

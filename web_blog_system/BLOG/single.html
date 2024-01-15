@@ -1,0 +1,228 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Single Post</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" id="theme-styles">
+
+    <!--[if lt IE 9]>
+        <script src="js/vendor/google/html5-3.6-respond-1.1.0.min.js"></script>
+    <![endif]-->
+    <!--<script src="js/jquery-2.2.3.js" type="text/javascript"></script> 注：要先引用jQuery.js文件哦！-->
+    <style>
+        .li_style {
+            list-style: none;
+        }
+    </style>
+    <style>
+        .post_list {
+            width: 750px;
+            margin: 16px auto;
+            border: 1px solid #ccc;
+            border-bottom: 0 none;
+        }
+
+            .post_list table {
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 14px;
+            }
+
+                .post_list table thead tr td {
+                    background-color: #eee;
+                    height: 40px;
+                }
+
+                    .post_list table thead tr td span {
+                        margin-left: 16px;
+                        color: blue;
+                    }
+
+                .post_list table tr td {
+                    border-bottom: 1px solid #ccc;
+                    height: 40px;
+                }
+
+                    .post_list table tr td span {
+                        color: blue;
+                        padding-right: 10px;
+                    }
+
+                    .post_list table tr td p:last-child {
+                        color: #999;
+                    }
+    </style>
+</head>
+<body onload="init()">
+    <script src="js/header.js"></script>
+    <div class="widewrapper main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-main">
+                    <article class="blog-post">
+                        <header>
+
+                            <div class="lead-image">
+                                <img src="img/single-post.jpg" alt="" class="img-responsive">
+
+                            </div>
+                        </header>
+                        <div class="body">
+                            <div id="mydiv"></div>
+                            <div class="meta">
+                                作者：<div id="li_name">你好</div>编号：<div id="number">无</div>
+
+                                <i class="fa fa-comments"></i><span class="data"><a href="#comments">Comments</a></span>
+
+                            </div>
+
+                            <div id="div1">nothing</div>
+                            <script type="text/javascript" src="js/js1.js"></script>
+                            <script type="text/javascript" src="js/accept.js"></script>
+                            <script type="text/javascript" src="js/getname3.js"></script>
+                            <script type="text/javascript" src="js/getname2.js"></script>
+                        </div>
+                    </article>
+
+                    <aside class="social-icons clearfix">
+                        <h3>Share on </h3>
+                        <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-google"></i></a>
+                    </aside>
+                    <aside class="comments" id="comments">
+                        <hr>
+
+                        <article class="comment_content">
+                            <div class="post_list">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td>
+                                                <span>发布者</span>
+                                            </td>
+                                            <td>评论内容</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="body" id="comment_content">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </article>
+
+                    </aside>
+
+                    <aside class="create-comment" id="create-comment">
+                        <hr>
+
+                        <h2><i class="fa fa-pencil"></i> 发表评论</h2>
+
+                        <form action="comment2.aspx" method="post" accept-charset="utf-8">
+                            <input name="Login4" id="comment-user" hidden>
+                            <input name="ider" id="comment-ider" hidden>
+                            <input name="titler" id="comment-titler" hidden>
+                            <textarea rows="10" name="Comment" id="comment-body" placeholder="请输入评论内容" class="form-control input-lg"></textarea>
+                            <div class="buttons clearfix">
+                                <button type="submit" class="btn btn-xlarge btn-clean-one" onclick="addcomment()">发表</button>
+                            </div>
+                        </form>
+                    </aside>
+                </div>
+
+                <aside class="col-md-4 blog-aside">
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>热点话题</h3>
+                        </header>
+                        <div class="body">
+                            <ul class="clean-list">
+                                <li><a href="">吃吃吃！干饭人！</a></li>
+                                <li><a href="">表白wqy小哥哥的巧克力</a></li>
+                                <li><a href="">论十大巧克力</a></li>
+                                <li><a href="">论持久战</a></li>
+                                <li><a href="">韵酒的巧克力变好吃了</a></li>
+                                <li><a href="">WEB大作业求助！！！</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>往期经典</h3>
+                        </header>
+                        <div class="body">
+                            <ul class="clean-list">
+                                <li><a href="">读《巧克力战争》有感</a></li>
+                                <li><a href="">大家都是巧克力爱好者吗？</a></li>
+                                <li><a href="">授权审批</a></li>
+                                <li><a href="">巧克力味安慕希最好喝~~</a></li>
+                                <li><a href="">加强刻晴、异客</a></li>
+                                <li><a href="">霉霉新巧克力味专辑！</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>标签</h3>
+                        </header>
+                        <div class="body clearfix">
+                            <ul class="tags">
+                                <li><a href="#">巧克力</a></li>
+                                <li><a href="#">酸奶</a></li>
+                                <li><a href="#">牛奶</a></li>
+                                <li><a href="#">游戏</a></li>
+                                <li><a href="#">饼干</a></li>
+                                <li><a href="#">音乐</a></li>
+                                <li><a href="#">阅读</a></li>
+                                <li><a href="#">规章</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/footer.js"></script>
+    <script src="js/cookie.js"></script>
+    <script src="js/js.js"></script>
+    <script type="text/javascript" src="js/accept.js"></script>
+    <script type="text/javascript" src="js/getname2.js"></script>
+    <script type="text/javascript" src="js/getname3.js"></script>
+    <script type="text/javascript" src="js/search.js"></script>
+    <script src="js/comment2.js"></script>
+    <script src="js/addcomment.js"></script>
+
+    <!--<script type="text/javascript">
+        function Table() {
+            var xmlhttp = (window.XMLHttpRequest) ? new XMLHttpRequest() : new ActiveXObject("Microsoft.XMLHTTP");
+            xmlhttp.open("get", "comment2.aspx", true);
+
+            xmlhttp.onreadystatechange = function () //请求完成将收到此事件
+            {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200)//状态为4表示请求成功
+                    document.getElementById("data").innerHTML = xmlhttp.responseText;
+            }
+
+            xmlhttp.send(null);
+        }
+        Table();-->
+    <!--</script>-->
+</body>
+</html>

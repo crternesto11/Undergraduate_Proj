@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>About Me</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" id="theme-styles">
+
+    <!--[if lt IE 9]>
+        <script src="js/vendor/google/html5-3.6-respond-1.1.0.min.js"></script>
+    <![endif]-->
+</head>
+<body onload="init()">
+    <script src="js/header.js"></script>
+    <div class="widewrapper main" id="div1">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 clean-superblock" id="contact">
+                    <h2>注册</h2>
+                    <form action="about.aspx" method="post" accept-charset="utf-8" class="contact-form">
+                        <input type="text" name="name" id="zhuce-name" placeholder="用户名" class="form-control input-lg">
+                        <input type="password" name="password" id="zhuce-password" placeholder="密码" class="form-control input-lg">
+                        <input type="password" name="password1" id="zhuce-password1" placeholder="再次输入密码" class="form-control input-lg">
+                        <input type="email" name="email" id="zhuce-email" placeholder="email" class="form-control input-lg" />
+                        <div style="margin:15px">
+                            <label><input type="radio" name="test" checked="checked" /><span>男</span></label>
+                            <label><input type="radio" name="test" /><span>女</span></label>
+                        </div>
+
+                        <div class="buttons clearfix">
+                            <button type="button" class="btn btn-xlarge btn-clean-one" onclick="login();">提交</button>
+                        </div>
+                        <p class="change_link" style="text-align: center">
+                            <span class="text">已有账号 ?</span>
+                            <a href="zhuce.html" style="color: #a7c4c9" class="to_login">登录 </a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/footer.js"></script>
+    <script src="js/zhuce.js"></script>
+    <script src="js/cookie.js"></script>
+</body>
+</html>

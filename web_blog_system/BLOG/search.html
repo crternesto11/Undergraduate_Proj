@@ -1,0 +1,185 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+   
+    <!-- Font-Awesome -->
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+
+    <!-- Google Webfonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600|PT+Serif:400,400italic' rel='stylesheet' type='text/css'>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css" id="theme-styles">
+
+    <!--[if lt IE 9]>      
+        <script src="js/respond.js"></script>
+    <![endif]-->
+    <style>
+        .body_mid {
+            background-color:beige;
+            margin-bottom: 40px;
+            border: 1px solid #ddd;
+            border-left: 10px solid #ddd;
+         }
+        .body_mid header {
+            background-color: cornflowerblue;
+            border-bottom: 1px solid #ddd;
+         }
+
+        .body_mid header h3 {
+            font-size: 30px;
+            padding: 10px 20px 3px 20px;
+            margin-top: 0;
+            color: #48535f;
+         }
+
+         .body_mid .body {
+             margin: 10px 0;
+             padding: 5px;
+          }
+
+          .body_mid a {
+             color: #5b6268;
+           }
+    </style>
+    
+</head>
+<body onload="init()">
+    <script src="js/header.js"></script>
+    <div class="widewrapper main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 blog-main" id="divmain">
+                    <div class="body_mid">
+                        <header>
+                            <h3>该用户发过的帖子</h3>
+                        </header>
+                        <div class="body">
+                            <ul class="clean-list" id="add">
+                                <li id="lia"></li>
+                                <li id="lib"></li>
+                                <li id="lic"></li>
+                                <li id="lid"></li>
+                                <li id="lie"></li>
+                                <li id="lif"></li>
+                                <li id="lig"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript" src="js/js3.js"></script>
+                    <script type="text/javascript" src="js/cconnect.js"></script>
+
+                </div>
+                <aside class="col-md-4 blog-aside">
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>热点话题</h3>
+                        </header>
+                        <div class="body">
+                            <ul class="clean-list">
+                                <li><a href="">吃吃吃！干饭人！</a></li>
+                                <li><a href="">表白wqy小哥哥的巧克力</a></li>
+                                <li><a href="">论十大巧克力</a></li>
+                                <li><a href="">论持久战</a></li>
+                                <li><a href="">韵酒的巧克力变好吃了</a></li>
+                                <li><a href="">WEB大作业求助！！！</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>往期经典</h3>
+                        </header>
+                        <div class="body">
+                            <ul class="clean-list">
+                                <li><a href="">读《巧克力战争》有感</a></li>
+                                <li><a href="">大家都是巧克力爱好者吗？</a></li>
+                                <li><a href="">授权审批</a></li>
+                                <li><a href="">巧克力味安慕希最好喝~~</a></li>
+                                <li><a href="">加强刻晴、异客</a></li>
+                                <li><a href="">霉霉新巧克力味专辑！</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="aside-widget">
+                        <header>
+                            <h3>标签</h3>
+                        </header>
+                        <div class="body clearfix">
+                            <ul class="tags">
+                                <li><a href="#">巧克力</a></li>
+                                <li><a href="#">酸奶</a></li>
+                                <li><a href="#">牛奶</a></li>
+                                <li><a href="#">游戏</a></li>
+                                <li><a href="#">饼干</a></li>
+                                <li><a href="#">音乐</a></li>
+                                <li><a href="#">阅读</a></li>
+                                <li><a href="#">规章</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="widewrapper footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-user"></i>关于</h3>
+
+                        <p>这是一个正经的讨论巧克力的网站，请大家理性发言！</p>
+                        <p>凡是涉及其它甜品的一律不审批！！！</p>
+                    </div>
+
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-pencil"></i>近期热点</h3>
+                        <ul class="clean-list">
+                            <li><a href="">巧克力的制作方法</a></li>
+                            <li><a href="">新鲜巧克力</a></li>
+                            <li><a href="">可可豆~开启一天的好心情</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 footer-widget">
+                        <h3> <i class="fa fa-envelope"></i>联系我们</h3>
+
+                        <p>本论坛管理员：夏xx</p>
+                        <p>联系邮箱：322312@ww.xin</p>
+                        <div class="footer-widget-icon">
+                            <i class="fa fa-facebook"></i><i class="fa fa-twitter"></i><i class="fa fa-google"></i>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="widewrapper copyright">
+            本页面受版权保护——web大作业开发团队
+        </div>
+    </footer>
+    
+    <script src="js/cookie.js"></script>
+    <!--<script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/modernizr.js"></script>-->
+    <script src="js/js.js"></script>
+    <script type="text/javascript" src="js/accept.js"></script>
+    <script type="text/javascript" src="js/getname2.js"></script>
+    <script type="text/javascript" src="js/getname3.js"></script>
+    <script type="text/javascript" src="js/search.js"></script>
+</body>
+</html>

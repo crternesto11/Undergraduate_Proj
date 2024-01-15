@@ -1,0 +1,50 @@
+﻿<!--用Ajax get 请求服务器的 students表的数据到DataTable，并用C#的系列化成字符串，返回给前端，并在回调函数中实现其显示-->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Ajax的get使用</title>
+    <style>
+        div {
+            margin: 0;
+            width: 300px;
+            height: 300px;
+            border: 1px solid red;
+            font-family: "仿宋_GB2312";
+            font-size: 10pt;
+            text-align: center;
+            /*background-color: yellowgreen;*/
+            /*color: brown;*/
+        }
+    </style>
+    <script type="text/javascript">
+        function showData() {
+            var xmlHttp = window.XMLHttpRequest ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
+            xmlHttp.open("GET", "User.aspx", true); //URL中传递参数
+            xmlHttp.onreadystatechange = function () {
+                if (xmlHttp.readyState == 4)
+                    var data = xmlHttp.responseText;
+                var jsonobj = eval('(' + data + ')');
+                
+                document.write(jsonobj[2]["post_title"]);
+                //j = 0;
+                //for (i in jsonobj)
+                //    for (var key in jsonobj[i]) {
+                //        ++j;
+                //        if (j == 6) {
+                //            document.getElementById("div1").innerText = jsonobj[i][key];
+                //        }
+                //    }
+                //}
+            }
+            xmlHttp.send("");
+        }
+        showData();
+    </script>
+</head>
+<body>
+    <!--<div id="div1" onclick="showData()">
+        
+    </div>-->
+</body>
+</html>

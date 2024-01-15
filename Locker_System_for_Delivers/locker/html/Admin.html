@@ -1,0 +1,292 @@
+﻿<!DOCTYPE html>
+<!--表示此网页可翻译-->
+<!--<html lang="en">-->
+<html>
+<head>
+    <!-- basic -->
+    <style type="text/css">
+        td {
+            vertical-align: middle;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>KingCity管理后台</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <!--<link rel="icon" href="images/fevicon.png" type="image/png" />-->
+    <!-- bootstrap css 左侧下拉有更多-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="../style.css" />
+    <!-- responsive css 使边上的缩放-->
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <!-- color css -->
+    <!--<link rel="stylesheet" href="css/colors.css" />-->
+    <!-- select bootstrap -->
+    <!--<link rel="stylesheet" href="css/bootstrap-select.css" />-->
+    <!-- scrollbar css -->
+    <!--<link rel="stylesheet" href="css/perfect-scrollbar.css" />-->
+    <!-- custom css -->
+    <!--<link rel="stylesheet" href="css/custom.css" />-->
+    <!-- calendar file css -->
+    <!--<link rel="stylesheet" href="js/semantic.min.css" />-->
+    <!-- fancy box js -->
+    <!--<link rel="stylesheet" href="css/jquery.fancybox.css" />-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <![endif]-->
+
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // alert("asd");
+            var html = '';
+            $.ajax({
+                type: 'get',
+                url: "https://localhost:44357/api/admins/adminsList",
+                success: function (data) {
+                   //alert("dddd");
+                    for (var i = 0; i < data.length; i++) {
+                        //alert(data[i]["AdminId"]);
+                        html += "<tr><td>" + JSON.stringify(data[i]["AdminId"]) + "</td><td>" + JSON.stringify(data[i]["AdminName"]) + "</td><td>" + JSON.stringify(data[i]["AdminLevel"]) + "</td>";
+                    }
+                    $(AdminList).append(html);
+                },
+                error: function () {
+                   alert("显示异常！");
+               }
+            });
+
+            //$.ajax({
+            //    type: 'get',
+            //    url: "https://localhost:44349/api/admin/refunds/refundsList",
+            //    success: function (data) {
+            //        $(message).append(data.length);
+            //    },
+            //    error: function () {
+            //        alert("显示异常！");
+            //    }
+            //});
+
+        })
+
+        //按等级筛选用户
+        function classifyShow(optionValue) {
+            var userInfo = '';
+            var url = "https://localhost:44357/api/admins/adminsByRank";
+                $.ajax({
+                    //几个参数需要注意一下
+                    type: "get",//方法类型
+                    dataType: "json",//预期服务器返回的数据类型
+                    url: url,
+                    data: { "selectRank": optionValue },
+                    success: function (data) {
+                        for (var i = 0; i < data.length; i++) {
+                            userInfo += "<tr><td>" + JSON.stringify(data[i]["AdminId"]) + "</td><td>" + JSON.stringify(data[i]["AdminName"]) + "</td><td>" + JSON.stringify(data[i]["AdminLevel"]) + "</td>";
+                        }
+                        $(AdminList).empty("");
+                        $(AdminList).append(userInfo);
+                    },
+                    error: function () {
+                        alert("异常！");
+                    }
+                });
+            }
+
+        ////模糊查询
+        function uploadLikeResearch() {
+            var userInfo = '';
+            var url = "https://localhost:44357/api/admins/adminFuzzy";
+            //alert("模糊查询");
+            $.ajax({
+                //几个参数需要注意一下
+                type: "get",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: url,
+                data: $('#SearchText').serializeArray(),
+                success: function (data) {
+                    for (var i = 0; i < data.length; i++) {
+                        userInfo += "<tr><td>" + JSON.stringify(data[i]["AdminId"]) + "</td><td>" + JSON.stringify(data[i]["AdminName"]) + "</td><td>" + JSON.stringify(data[i]["AdminLevel"]) + "</td>";
+
+                    }
+                    $(AdminList).empty("");
+                    $(AdminList).append(userInfo);
+                    //alert("清空！");
+                },
+                error: function () {
+                    alert("异常！");
+                }
+            });
+        }
+
+
+    </script>
+</head>
+
+<body class="inner_page tables_page">
+    <div class="full_container">
+        <div class="inner_container">
+            <!-- Sidebar 侧边栏 -->
+            <nav id="sidebar">
+                <div class="sidebar_blog_2">
+                    <h4>柜子管理后台</h4>
+                    <ul class="list-unstyled components">
+                        <li class="active">
+                            <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-dashboard yellow_color"></i> <span>柜子管理</span></a>
+                            <ul class="collapse list-unstyled" id="dashboard">
+                                <li>
+                                    <a href=""> <span>柜子管理</span></a>
+                                </li>
+                                <li>
+                                    <a href=""> <span>柜子统计</span></a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!--<li>
+                            <a href="#element" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-object-group blue2_color"></i> <span>交易管理</span></a>
+                            <ul class="collapse list-unstyled" id="element">
+                                <li><a href="order_list.html"> <span>订单列表</span></a></li>
+                                <li><a href=""> <span>发货管理</span></a></li>
+
+                            </ul>
+                        </li>-->
+                        <!--<li><a href=""><i class="fa fa-map purple_color2"></i> <span>优惠券管理</span></a></li>-->
+                        <li><a href=""><i class="fa fa-diamond orange_color"></i> <span>管理员管理</span></a></li>
+                        <!--<li>
+                            <a href=""><i class="fa fa-clone yellow_color"></i> <span>退出（需不需要?)</span></a>
+                        </li>-->
+                    </ul>
+                </div>
+            </nav>
+            <!-- end sidebar -->
+            <!-- right content -->
+            <div id="content">
+                <!-- topbar 上边框 -->
+                <div class="topbar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="full">
+                            <button type="button" id="sidebarCollapse" class="sidebar_toggle"><i class="fa fa-bars"></i></button>
+
+                            <div class="right_topbar">
+                                <div class="icon_info">
+                                    <ul>
+                                        <li><a href="refund.html"><i class="fa fa-bell-o"></i><span class="badge" id="message"></span></a></li>
+                                        <li><a href="#"><i class="fa fa-sign-out"></i><span class="badge"></span></a></li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <!-- end topbar -->
+                <!-- dashboard inner -->
+                <div class="midde_cont">
+                    <div class="container-fluid">
+                        <div class="row column_title">
+                            <div class="col-md-12">
+                                <div class="page_title" >
+                                    <h2>管理员管理</h2>
+                                    <div style="float: right;width: 300px;height: 65px;padding-top: 30px;border-bottom-width: 5px;padding-bottom: 5px;">
+                                        <input type="text" name="SearchText" id="SearchText" placeholder="请输入管理员昵称:"/>
+                                        <button onclick="uploadLikeResearch()" style="float:right">查询(昵称)</button>
+                                    </div>
+                                    
+                                    <!--<div value="查询" onclick="uploadFileAndParam()"  style="float:right">查询</div>-->
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- row 中间填一些表格或者商品行-->
+                        <div>
+                            <form>
+                                <table class="gallery table table_list table_striped table-bordered " id="tableList" style=" text-align: center;vertical-align:middle; ">
+                                    <thead>
+                                        <tr>
+                                            <th width="180">管理员ID</th>
+                                            <th width="120">管理员昵称</th>
+                                            <th width="150">
+                                                <select id="RankSelect" style="background-color:rgba(0,0,0,0)" onchange="classifyShow(this.value)">
+                                                    <option value="666">管理员等级</option>
+                                                    <option value="0">普通管理员</option>
+                                                    <option value="1">超级管理员</option>
+                                                </select>
+                                            </th>
+                                            <!--<th width="80">
+                                                <select id="RankSelect" style="background-color:rgba(0,0,0,0)" onchange="classifyShow(this.value)">
+                                                    <option value="666" >用户等级</option>
+                                                    <option value="0">0级匿名用户</option>
+                                                    <option value="1">1级用户</option>
+                                                    <option value="2">2级用户</option>
+                                                    <option value="3">3级用户</option>
+                                                    <option value="4">4级用户</option>
+                                                    <option value="5">5级用户</option>
+                                                </select>
+                                            </th>
+                                            <th width="100">消费额</th>
+                                            <th width="120">佣金总额</th>-->
+
+                                        </tr>
+                                    </thead>
+                                    <tbody id="AdminList">
+                                    </tbody>
+                                </table>
+                            </form>
+
+                        </div>
+                    </div>
+                    <!-- footer -->
+                    <!--<div class="container-fluid">
+                       <div class="footer">
+                          <p>Copyright &copy; 2020.Company name All rights reserved.<a target="_blank" href="https://sc.chinaz.com/moban/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>
+                       </div>
+                    </div>-->
+                </div>
+                <!-- end dashboard inner -->
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <!--下拉小三角有更多-->
+    <!--<script src="../js/jquery.min.js"></script>-->
+    <!--<script src="js/popper.min.js"></script>-->
+    <!--下拉小三角有更多-->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- wow animation 缩放之后左端更好看-->
+    <script src="../js/animate.js"></script>
+    <!-- select country -->
+    <!--<script src="js/bootstrap-select.js"></script>-->
+    <!-- owl carousel -->
+    <!--<script src="js/owl.carousel.js"></script>-->
+    <!-- chart js -->
+    <!--<script src="js/Chart.min.js"></script>
+    <script src="js/Chart.bundle.min.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/analyser.js"></script>-->
+    <!-- nice scrollbar -->
+    <!--<script src="js/perfect-scrollbar.min.js"></script>-->
+
+    <!--<script>
+        var ps = new PerfectScrollbar('#sidebar');
+    </script>-->
+
+    <!-- fancy box js -->
+    <!--<script src="js/jquery-3.3.1.min.js"></script>-->
+    <!--<script src="js/jquery.fancybox.min.js"></script>-->
+
+    <!-- custom js 左侧缩小 -->
+    <script src="../js/custom.js"></script>
+
+    <!-- calendar file css -->
+    <!--<script src="js/semantic.min.js"></script>-->
+</body>
+</html>

@@ -1,0 +1,119 @@
+﻿﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title></title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <!--<link rel="icon" href="images/fevicon.png" type="image/png" />-->
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="../style.css" />
+    <!-- responsive css -->
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <!-- color css -->
+    <!-- <link rel="stylesheet" href="css/colors.css" />-->
+    <!-- select bootstrap -->
+    <link rel="stylesheet" href="../css/bootstrap-select.css" />
+    <!-- scrollbar css -->
+    <link rel="stylesheet" href="../css/perfect-scrollbar.css" />
+    <!-- custom css -->
+    <link rel="stylesheet" href="../css/custom.css" />
+    <!-- calendar file css -->
+    <!--<link rel="stylesheet" href="css/semantic.min.css" />-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <script>
+        //点击button按钮处理
+        function login() {
+            var url = "http://localhost:50364/api/Admin/Login/login";
+            $.ajax({
+                type: 'get',
+                url: url,
+                data: {
+                    "ad_id": $("#ad_id").val(),
+                    "ad_password": $("#ad_password").val()
+                },
+                success: function (data) {
+
+                    var state = parseInt(data["ad_state"]);
+                    if (state == 0) {
+                        alert("工卡号或密码错误");
+                    }
+                    else if (state == 1) {
+                        alert("登录成功");
+                        window.location.href = "./product_management.html";
+                    }
+                }
+            });
+
+        }
+    </script>
+</head>
+<body class="inner_page login">
+
+    <div class="full_container">
+        <div class="container">
+            <div class="center verticle_center full_height">
+                <div class="login_section">
+                    <div class="logo_login">
+                        <div class="center" style="height:130px">
+
+                        </div>
+                    </div>
+                    <div class="login_form">
+                        <form>
+                            <fieldset>
+                                <div class="field">
+                                    <label class="label_field">工卡号</label>
+                                    <input name="ad_id" id="ad_id" />
+                                </div>
+                                <div class="field">
+                                    <label class="label_field">密码</label>
+                                    <input type="password" name="ad_password" id="ad_password" />
+                                </div>
+                                <!--<div class="field">
+                                         <label class="label_field hidden">hidden label</label>
+                                         <label class="form-check-label"><input type="checkbox" class="form-check-input">记住密码</label>
+                                             <a class="forgot" href="">忘记密码?</a>
+                                </div>-->
+                                <div class="field margin_0">
+                                    <label class="label_field hidden">hidden label</label>
+                                    <button class="main_bt" type="button" name="signin" id="signin" onclick="login()">登录</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <!--<script src="js/popper.min.js"></script>-->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- wow animation -->
+    <script src="js/animate.js"></script>
+    <!-- select country -->
+    <!--<script src="js/bootstrap-select.js"></script>-->
+    <!-- nice scrollbar -->
+    <!--<script src="js/perfect-scrollbar.min.js"></script>
+    <script>
+                 var ps = new PerfectScrollbar('#sidebar');
+    </script>-->
+    <!-- custom js -->
+    <!--<script src="js/custom.js"></script>-->
+</body>
+</html>

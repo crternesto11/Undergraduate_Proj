@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>KingCity管理后台</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- site icon -->
+    <!--<link rel="icon" href="images/fevicon.png" type="image/png" />-->
+    <!-- bootstrap css 左侧下拉有更多-->
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <!-- site css -->
+    <link rel="stylesheet" href="../style.css" />
+    <!-- responsive css 使边上的缩放-->
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <!-- color css -->
+    <!--<link rel="stylesheet" href="css/colors.css" />-->
+    <!-- select bootstrap -->
+    <!--<link rel="stylesheet" href="css/bootstrap-select.css" />-->
+    <!-- scrollbar css -->
+    <!--<link rel="stylesheet" href="css/perfect-scrollbar.css" />-->
+    <!-- custom css -->
+    <!--<link rel="stylesheet" href="css/custom.css" />-->
+    <!-- calendar file css -->
+    <!--<link rel="stylesheet" href="js/semantic.min.css" />-->
+    <!-- fancy box js -->
+    <!--<link rel="stylesheet" href="css/jquery.fancybox.css" />-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <![endif]-->
+    <script src="../js/jquery-2.2.3.min.js"></script>
+    <script src="../js/ajax.js"></script>
+
+    <script>
+        //点击button按钮处理
+        function login() {
+            //alert("aaaa");
+            var url = "https://localhost:44357/api/login/login";
+            $.ajax({
+                type: "get",
+                dataType: "json",//预期服务器返回的数据类型
+                url: url,
+                data: {
+                    "ad_id": $('#ad_id').val(),
+                    "ad_password": $('#ad_password').val()
+                },
+                success: function (data) {
+                    //alert("aassd");
+                    var state = parseInt(data["ad_state"]);
+                    if (state == 0) {
+                        alert("工卡号或密码错误");
+                    }
+                    else if (state == 1) {
+                        alert("登录成功");
+                        window.location.href = "/html/Admin.html";
+                    }
+
+                },
+                error: function () {
+                    alert("异常！");
+                }
+            });
+            //alert("wancheng");
+        }
+    </script>
+</head>
+   <body class="inner_page login">
+      <div class="full_container">
+         <div class="container">
+            <div class="center verticle_center full_height">
+               <div class="login_section">
+                  <div class="logo_login"style="padding-top: 0px;padding-bottom: 0px;">
+                     <div class="center"style="height: 150px; width: 620px; margin-left: 0px; background-color: #1d2d3c;">
+                        <img width="190" src="../images/logo/login.png" alt="#" />
+                     </div>
+                  </div>
+                  <div class="login_form">
+                     <form>
+                        <fieldset>
+                           <div class="field">
+                              <label class="label_field" style="font-weight: bold; width: 80px;" >工号</label>
+                              <input id="ad_id" name="ad_id" placeholder="请输入您的工号"style="margin-right: 40px; margin-top: -50px; " />
+                           </div>
+                           <div class="field">
+                              <label class="label_field" style="font-weight: bold; width: 80px; margin-top: 50px;">密码</label>
+                              <input type="password" name="ad_password" id="ad_password" placeholder="请输入您的密码"style="margin-right: 40px; margin-top: -50px; " />
+                           </div>
+                           <div class="field">
+                              <label class="label_field hidden">hidden label</label>
+                              <label class="form-check-label"style="margin-left: -20px; ">
+                               <input type="checkbox" class="form-check-input">记住密码</label>
+                              <a class="forgot" href=""style="margin-right: 50px; ">账号注册</a>
+                           </div>
+                           <div class="field margin_0">
+                              <label class="label_field hidden">hidden label</label>
+                              <button class="main_bt" style="margin-left: 80px; " onclick="login()">登录</button>
+                           </div>
+                        </fieldset>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- jQuery -->
+      <!--<script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>-->
+      <script src="../js/bootstrap.min.js"></script>
+      <!-- wow animation -->
+      <!--<script src="js/animate.js"></script>-->
+      <!-- select country -->
+      <!--<script src="js/bootstrap-select.js"></script>-->
+      <!-- nice scrollbar -->
+      <!--<script src="js/perfect-scrollbar.min.js"></script>
+      <script>
+         var ps = new PerfectScrollbar('#sidebar');
+      </script>-->
+      <!-- custom js -->
+      <!--<script src="js/custom.js"></script>-->
+   </body>
+</html>

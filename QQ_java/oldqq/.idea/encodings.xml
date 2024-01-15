@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="GBK">
+    <file url="file://$PROJECT_DIR$/src/client/common/ComboBoxRenderer.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/common/MyLabel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/common/MyTextPane.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/common/MyTreeIcon.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/control/Chat.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/control/Main.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/control/MyTree.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/control/QunChat.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/control/Register.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/control/SendTread.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/frame/ChatFrame.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/frame/FaceFrame.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/frame/LoginFrame.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/frame/MainFrame.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/frame/MyPanel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/frame/QunChatFrame.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/frame/RegisterFrame.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/frame/ScreenFram.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/frame/SendFileFrame.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/socket/CC_TCP.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/socket/S_TCP.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/client/socket/UDPChat.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/socket/TCP.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/socket/TCPServer.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/com/socket/UDP.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/common/Page.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/common/PageService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/dao/IMsg.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/dao/IUser.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/entity/Msg.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/entity/Users.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/frame/MainWindow.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/frame/MsgActionListener.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/frame/MsgMana.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/frame/ServerActionListen.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/frame/ServerMana.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/frame/UserActionListen.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/frame/UserMana.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/server/frame/UserTableCahnged.java" charset="UTF-8" />
+    <file url="PROJECT" charset="GBK" />
+  </component>
+</project>

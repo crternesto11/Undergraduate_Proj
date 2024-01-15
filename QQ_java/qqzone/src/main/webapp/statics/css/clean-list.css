@@ -1,0 +1,54 @@
+.clean-list {
+    list-style: none;
+}
+
+.clean-list li {
+    line-height: 23px;
+    margin-bottom: 14px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 25px;
+    background-color: snow;
+    opacity: 0.7;
+
+}
+
+.clean-list li a:hover,
+.clean-list li a:focus {
+    color: red;
+}
+.footer .clean-list {
+    margin-top: -6px;
+    padding-left: 23px;
+}
+
+.footer .clean-list li {
+    margin-bottom: 5px;
+}
+
+.footer .clean-list li a {
+    color: #aaa;
+    padding-bottom: 5px;
+}
+
+.footer .clean-list li a:hover {
+    color: #ffffff;
+}
+
+.footer .clean-list li:before {
+    left: -21px;
+}
+
+
+.body {
+    font-size: 16px;
+    line-height: 27px;
+    font-family: 'Open Sans', sans-serif;
+    color: #444;
+    background-color: #fff;
+    padding: 50px 100px;
+    background-color: #ddd;
+    background: url(../images/jay.jpg) no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+}
